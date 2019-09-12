@@ -1,0 +1,17 @@
+.list-card {
+  border: 1px solid rgb(35, 240, 178);
+  border-radius: 20px;
+  margin: 20px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.prd-content {
+  margin-left: 1em;
+  margin-top: 0.5em;
+}
+
+.list-completed {
+  margin-top: 1em;
+}
