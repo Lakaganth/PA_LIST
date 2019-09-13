@@ -11,8 +11,6 @@ const ListCard = ({ pList }) => {
 
   const [updateComp] = useMutation(UPDATE_PRODUCT_COMPLETED);
 
-  console.log(completed.comp);
-
   return (
     <div className="list-card">
       <React.Fragment>

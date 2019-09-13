@@ -17,7 +17,6 @@ import Loader from "../utils/Loader";
 
 const EditProductForm = ({ match }) => {
   const pID = match.params.pID;
-  const cID = match.params.cID;
 
   const getProduct = useQuery(GET_PRODUCT, {
     variables: { pID }

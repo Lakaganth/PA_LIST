@@ -5,7 +5,7 @@ import { Navbar } from "react-materialize";
 const SideNavbarPA = () => {
   return (
     <Navbar
-      className=" purple darken-4"
+      className=" black"
       brand={<Link to="/">P&A Stores</Link>}
       alignLinks="right"
     >

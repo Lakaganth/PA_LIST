@@ -279,7 +279,8 @@ module.exports = {
           { _id: p },
           {
             $set: {
-              product_completed: false
+              product_completed: false,
+              product_toBuy: 0
             }
           }
         );

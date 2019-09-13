@@ -34,8 +34,7 @@ const ListPage = props => {
   if (error) {
     return <div>{error}</div>;
   }
-  console.log(catFilter.catFilter);
-  console.log(data.getTodayList);
+
   const handleListSubmit = () => {
     completeList({ variables: { lID: data.getTodayList._id } });
     props.history.push("/");
