@@ -21,13 +21,14 @@ const AddProductForm = () => {
         data: { addNewProduct }
       }
     ) {
+      console.log(addNewProduct.category._id);
       const { getAllProductsForCategory } = cache.readQuery({
         query: GET_PRODUCTS_FROM_CATEGORIES,
-        variables: { cID: addNewProduct._id }
+        variables: { cID: addNewProduct.category._id }
       });
       cache.writeQuery({
         query: GET_PRODUCTS_FROM_CATEGORIES,
-        variables: { cID: addNewProduct._id },
+        variables: { cID: addNewProduct.category._id },
         data: {
           getAllProductsForCategory: getAllProductsForCategory.concat([
             addNewProduct
@@ -41,8 +42,10 @@ const AddProductForm = () => {
 
   const [newProduct, setNewProduct] = React.useState({
     product_name: "",
-    product_unit_price: "",
-    product_inventory: "",
+    product_pack: 0,
+    product_size: "0",
+    product_unit_price: 0.0,
+    product_inventory: 0,
     product_inventory_date: "",
     category_name: "",
     primary_shop: "",
@@ -51,6 +54,8 @@ const AddProductForm = () => {
 
   const {
     product_name,
+    product_pack,
+    product_size,
     product_unit_price,
     product_inventory,
     product_inventory_date,
@@ -90,6 +95,8 @@ const AddProductForm = () => {
     addproduct({
       variables: {
         product_name,
+        product_pack,
+        product_size,
         product_unit_price,
         product_inventory,
         product_inventory_date,
@@ -97,9 +104,12 @@ const AddProductForm = () => {
         primary_shop,
         secondary_shop
       }
+      // refetchQueries: [{ query: getCategories }]
     });
     setNewProduct({
       product_name: "",
+      product_pack: "",
+      product_size: "",
       product_unit_price: "",
       product_inventory: "",
       product_inventory_date: "",
@@ -125,6 +135,31 @@ const AddProductForm = () => {
           required
         />
       </Form.Group>
+      <Form.Group controlId="product_pack">
+        <Form.Label>Product Pack</Form.Label>
+        <Form.Control
+          type="number"
+          name="product_unit_price"
+          value={product_pack}
+          onChange={e => {
+            setNewProduct({
+              ...newProduct,
+              product_pack: parseInt(e.target.value)
+            });
+          }}
+        />
+      </Form.Group>
+
+      <Form.Group controlId="product_size">
+        <Form.Label>Product Size</Form.Label>
+        <Form.Control
+          type="text"
+          name="product_size"
+          value={product_size}
+          onChange={handleChange}
+        />
+      </Form.Group>
+
       <Form.Group controlId="product_unit_price">
         <Form.Label>Product Unit Price</Form.Label>
         <Form.Control
@@ -169,22 +204,42 @@ const AddProductForm = () => {
           dateFormat="MMMM d, yyyy "
         />
       </Form.Group>
-      <Form.Group controlId="category_name">
-        <Form.Label>Category</Form.Label>
-        <Form.Control
-          as="select"
-          name="category_name"
-          onChange={e => {
-            setNewProduct({
-              ...newProduct,
-              category_name: e.target.value
-            });
-          }}
-        >
-          <option>Choose...</option>
-          {getAllCategories()}
-        </Form.Control>
-      </Form.Group>
+      {category_name === null ? (
+        <Form.Group controlId="category_name">
+          <Form.Label>Category</Form.Label>
+          <Form.Control
+            as="select"
+            name="category_name"
+            onChange={e => {
+              setNewProduct({
+                ...newProduct,
+                category_name: e.target.value
+              });
+            }}
+          >
+            <option>Choose...</option>
+            {getAllCategories()}
+          </Form.Control>
+        </Form.Group>
+      ) : (
+        <Form.Group controlId="category_name">
+          <Form.Label>Category</Form.Label>
+          <Form.Control
+            as="select"
+            name="category_name"
+            onChange={e => {
+              setNewProduct({
+                ...newProduct,
+                category_name: e.target.value
+              });
+            }}
+          >
+            <option>Choose...</option>
+            {getAllCategories()}
+          </Form.Control>
+        </Form.Group>
+      )}
+
       <Form.Group controlId="primary_shop">
         <Form.Label>Primary Shop</Form.Label>
         <Form.Control

@@ -6,6 +6,8 @@ module.exports = gql`
   input newProductInputData {
     product_name: String!
     product_unit_price: Float
+    product_pack: Int
+    product_size: String
     product_inventory: Int
     product_inventory_date: Date
     category_name: String!
@@ -39,6 +41,8 @@ module.exports = gql`
   type Product {
     _id: ID!
     product_name: String!
+    product_pack: Int
+    product_size: String
     product_category: String!
     product_unit_price: Float
     product_inventory: Int

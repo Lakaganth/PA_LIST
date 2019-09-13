@@ -35,6 +35,15 @@ const ListPage = props => {
     return <div>{error}</div>;
   }
 
+  let total_cost = 0;
+  const costArray = data.getTodayList.product.map(p => {
+    return p.product_toBuy * p.product_unit_price;
+  });
+
+  for (const ele of costArray) {
+    total_cost += ele;
+  }
+
   const handleListSubmit = () => {
     completeList({ variables: { lID: data.getTodayList._id } });
     props.history.push("/");
@@ -45,6 +54,10 @@ const ListPage = props => {
         Hello Raj, Today is{" "}
         <Moment format="MMM DD">{data.getTodayList.created_date}</Moment>{" "}
       </h4>
+      <p>
+        Today's Purchase cost is <span>&#163;</span>{" "}
+        <span className="span-price">{total_cost.toFixed(2)}</span>{" "}
+      </p>
       <Form>
         <Form.Group controlId="category_name">
           <Form.Label>Filter</Form.Label>

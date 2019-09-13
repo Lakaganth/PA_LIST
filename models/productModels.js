@@ -7,6 +7,12 @@ const productSchema = new Schema({
     type: String,
     required: true
   },
+  product_pack: {
+    type: Number
+  },
+  product_size: {
+    type: String
+  },
   product_category: {
     type: String,
     required: true

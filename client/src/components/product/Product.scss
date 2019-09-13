@@ -14,7 +14,10 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding-left: 1.5em;
+    padding-left: 0.5em;
+    p {
+      margin-bottom: 0px;
+    }
     .prd-name {
       font-size: 1.2em;
       // padding-left: 0.1em;
@@ -22,7 +25,7 @@
     }
     .prd-price {
       span {
-        padding-right: 0.5em;
+        padding-right: 0.1em;
       }
     }
   }
@@ -35,11 +38,18 @@
 }
 
 .add-to-list-comp {
-  button {
-    margin: 0 3px;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .product-page {
   // background-color: #a52da5;
+}
+
+.add-div {
+  // border-radius: 50%;
+  // border: 1px solid black;
+  // width: 20px;
+  // height: 20px;
 }

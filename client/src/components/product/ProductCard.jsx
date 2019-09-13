@@ -6,12 +6,16 @@ import "./Product.scss";
 import AddToList from "./AddToList";
 
 const ProductCard = ({ prod, refetch }) => {
-  // console.log(prod);
+  console.log(prod);
 
   return (
     <div className="product-card">
       <div className="card-content">
         <p className="prd-name">{prod.product_name}</p>
+        <p className="prd-pack">
+          {prod.product_pack} pack - {prod.product_size}{" "}
+        </p>
+
         <div>
           <p className="prd-price">
             <span>&#163;</span>

@@ -25,6 +25,8 @@ const EditProductForm = ({ match }) => {
 
   const [editProduct, setEditProduct] = React.useState({
     product_name: "",
+    product_pack: "",
+    product_size: "",
     product_unit_price: "",
     product_inventory: "",
     product_inventory_date: "",
@@ -39,6 +41,8 @@ const EditProductForm = ({ match }) => {
         console.log(data.getProduct);
         setEditProduct({
           product_name: data.getProduct.product_name,
+          product_pack: data.getProduct.product_pack,
+          product_size: data.getProduct.product_size,
           product_unit_price: data.getProduct.product_unit_price,
           product_inventory: data.getProduct.product_inventory,
           //   product_inventory_date: data.getProduct.product_inventory_date
@@ -87,6 +91,8 @@ const EditProductForm = ({ match }) => {
 
   const {
     product_name,
+    product_pack,
+    product_size,
     product_unit_price,
     product_inventory,
     product_inventory_date,
@@ -127,6 +133,8 @@ const EditProductForm = ({ match }) => {
       variables: {
         pID,
         product_name,
+        product_pack,
+        product_size,
         product_unit_price,
         product_inventory,
         product_inventory_date,
@@ -135,15 +143,17 @@ const EditProductForm = ({ match }) => {
         secondary_shop
       }
     });
-    setEditProduct({
-      product_name: "",
-      product_unit_price: "",
-      product_inventory: "",
-      product_inventory_date: "",
-      category_name: "",
-      primary_shop: "",
-      secondary_shop: ""
-    });
+    // setEditProduct({
+    //   product_name: "",
+    //   product_pack:"",
+    //     product_size:"",
+    //   product_unit_price: "",
+    //   product_inventory: "",
+    //   product_inventory_date: "",
+    //   category_name: "",
+    //   primary_shop: "",
+    //   secondary_shop: ""
+    // });
   };
   if (load) return <Loader></Loader>;
 
@@ -162,6 +172,35 @@ const EditProductForm = ({ match }) => {
           value={product_name}
           onChange={handleChange}
           required
+        />
+      </Form.Group>
+      <Form.Group controlId="product_pack">
+        <Form.Label>Product Pack</Form.Label>
+        <Form.Control
+          type="number"
+          name="product_pack"
+          step="0.01"
+          value={product_pack}
+          onChange={e => {
+            setEditProduct({
+              ...editProduct,
+              product_pack: parseFloat(e.target.value)
+            });
+          }}
+        />
+      </Form.Group>
+      <Form.Group controlId="product_size">
+        <Form.Label>Product Size</Form.Label>
+        <Form.Control
+          type="text"
+          name="product_size"
+          value={product_size}
+          onChange={e => {
+            setEditProduct({
+              ...editProduct,
+              product_size: e.target.value
+            });
+          }}
         />
       </Form.Group>
       <Form.Group controlId="product_unit_price">

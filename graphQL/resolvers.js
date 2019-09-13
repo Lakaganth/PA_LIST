@@ -148,6 +148,8 @@ module.exports = {
       const today = moment().format("YYYY MM DD");
       const {
         product_name,
+        product_pack,
+        product_size,
         product_unit_price,
         product_inventory,
         product_inventory_date,
@@ -158,6 +160,8 @@ module.exports = {
       try {
         const newProduct = new Product({
           product_name,
+          product_pack,
+          product_size,
           product_unit_price,
           product_inventory,
           product_inventory_date,
@@ -242,6 +246,8 @@ module.exports = {
     editProduct: async (root, { pID, editProductInput }, context) => {
       const {
         product_name,
+        product_pack,
+        product_size,
         product_unit_price,
         product_inventory,
         product_inventory_date,
@@ -256,6 +262,8 @@ module.exports = {
           {
             $set: {
               product_name,
+              product_pack,
+              product_size,
               product_unit_price,
               product_inventory,
               product_inventory_date,

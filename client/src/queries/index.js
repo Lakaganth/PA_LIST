@@ -29,6 +29,8 @@ export const GET_PRODUCTS_FROM_CATEGORIES = gql`
     getAllProductsForCategory(cID: $cID) {
       _id
       product_name
+      product_pack
+      product_size
       product_category
       product_unit_price
       product_inventory
@@ -67,6 +69,8 @@ export const GET_TODAY_LIST = gql`
       product {
         _id
         product_name
+        product_pack
+        product_size
         product_category
         product_completed
         product_toBuy
@@ -84,6 +88,8 @@ export const GET_PRODUCT = gql`
     getProduct(pID: $pID) {
       _id
       product_name
+      product_pack
+      product_size
       product_category
       product_unit_price
       product_inventory
@@ -128,6 +134,8 @@ export const ADD_NEW_SHOP = gql`
 export const ADD_NEW_PRODUCT = gql`
   mutation(
     $product_name: String!
+    $product_pack: Int
+    $product_size: String
     $product_unit_price: Float
     $product_inventory: Int
     $product_inventory_date: Date
@@ -138,6 +146,8 @@ export const ADD_NEW_PRODUCT = gql`
     addNewProduct(
       newProductInput: {
         product_name: $product_name
+        product_pack: $product_pack
+        product_size: $product_size
         product_unit_price: $product_unit_price
         product_inventory: $product_inventory
         product_inventory_date: $product_inventory_date
@@ -147,6 +157,9 @@ export const ADD_NEW_PRODUCT = gql`
       }
     ) {
       _id
+      category {
+        _id
+      }
     }
   }
 `;

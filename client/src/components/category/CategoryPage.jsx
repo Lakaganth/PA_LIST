@@ -11,7 +11,7 @@ const CategoryPage = () => {
   const { data, loading, error } = getCategories;
   if (loading) return <Loader></Loader>;
   if (error) return <div>Error : {error}</div>;
-  console.log(data);
+
   return (
     <div className="category-page">
       {data.getAllCategories.map(c => {
