@@ -20,6 +20,9 @@ const ListCard = ({ pList, catFilter }) => {
         <React.Fragment>
           <div className="prd-content">
             <p className="prd-name">{pList.product_name}</p>
+            <p className="prd-pack">
+              {pList.product_pack} {pList.product_size}{" "}
+            </p>
             <p className="prd-category">{pList.product_category}</p>
             <p className="prd-price">
               <span>&#163;</span>

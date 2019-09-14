@@ -14,29 +14,33 @@ import "react-datepicker/dist/react-datepicker.css";
 import "react-datepicker/dist/react-datepicker-cssmodules.css";
 
 const AddProductForm = () => {
-  const [addproduct, { loading }] = useMutation(ADD_NEW_PRODUCT, {
-    update(
-      cache,
-      {
-        data: { addNewProduct }
-      }
-    ) {
-      console.log(addNewProduct.category._id);
-      const { getAllProductsForCategory } = cache.readQuery({
-        query: GET_PRODUCTS_FROM_CATEGORIES,
-        variables: { cID: addNewProduct.category._id }
-      });
-      cache.writeQuery({
-        query: GET_PRODUCTS_FROM_CATEGORIES,
-        variables: { cID: addNewProduct.category._id },
-        data: {
-          getAllProductsForCategory: getAllProductsForCategory.concat([
-            addNewProduct
-          ])
-        }
-      });
-    }
-  });
+  const [addproduct, { loading }] = useMutation(
+    ADD_NEW_PRODUCT
+
+    //   {
+    //   update(
+    //     cache,
+    //     {
+    //       data: { addNewProduct }
+    //     }
+    //   ) {
+    //     console.log(addNewProduct.category._id);
+    //     const { getAllProductsForCategory } = cache.readQuery({
+    //       query: GET_PRODUCTS_FROM_CATEGORIES,
+    //       variables: { cID: addNewProduct.category._id }
+    //     });
+    //     cache.writeQuery({
+    //       query: GET_PRODUCTS_FROM_CATEGORIES,
+    //       variables: { cID: addNewProduct.category._id },
+    //       data: {
+    //         getAllProductsForCategory: getAllProductsForCategory.concat([
+    //           addNewProduct
+    //         ])
+    //       }
+    //     });
+    //   }
+    // }
+  );
   const getCategories = useQuery(GET_ALL_CATEGORIES);
   const getshops = useQuery(GET_ALL_SHOPS);
 
@@ -94,18 +98,20 @@ const AddProductForm = () => {
     e.preventDefault();
     addproduct({
       variables: {
-        product_name,
-        product_pack,
-        product_size,
-        product_unit_price,
-        product_inventory,
-        product_inventory_date,
-        category_name,
-        primary_shop,
-        secondary_shop
+        product_name: "",
+        product_pack: 0,
+        product_size: "0",
+        product_unit_price: 0.0,
+        product_inventory: 0,
+        product_inventory_date: "",
+        category_name: "",
+        primary_shop: "",
+        secondary_shop: ""
       }
       // refetchQueries: [{ query: getCategories }]
     });
+    getCategories.refetch();
+    getshops.refetch();
     setNewProduct({
       product_name: "",
       product_pack: "",
