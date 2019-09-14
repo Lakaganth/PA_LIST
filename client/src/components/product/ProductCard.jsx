@@ -6,7 +6,7 @@ import "./Product.scss";
 import AddToList from "./AddToList";
 
 const ProductCard = ({ prod, refetch }) => {
-  console.log(prod);
+  // console.log(prod);
 
   return (
     <div className="product-card">

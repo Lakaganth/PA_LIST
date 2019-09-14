@@ -14,8 +14,16 @@ import Form from "react-bootstrap/Form";
 
 const ListPage = props => {
   const [catFilter, setCatFilter] = React.useState({ catFilter: "All" });
+  const [listData, setListData] = React.useState(null);
+
   const getTodayList = useQuery(GET_TODAY_LIST);
-  const { data, loading, error } = getTodayList;
+  const { data, loading, error, refetch, networkStatus } = getTodayList;
+
+  React.useEffect(() => {
+    refetch();
+    //eslint-diable-next-line
+  }, []);
+
   const getCategory = useQuery(GET_ALL_CATEGORIES);
   const [completeList] = useMutation(LIST_COMPLETED);
   const getAllCategories = () => {
@@ -27,6 +35,8 @@ const ListPage = props => {
       <option key={category._id}>{category.category_name}</option>
     ));
   };
+
+  if (networkStatus === 4) return <Loader></Loader>;
 
   if (loading) {
     return <Loader></Loader>;
@@ -58,6 +68,7 @@ const ListPage = props => {
         Today's Purchase cost is <span>&#163;</span>{" "}
         <span className="span-price">{total_cost.toFixed(2)}</span>{" "}
       </p>
+
       <Form>
         <Form.Group controlId="category_name">
           <Form.Label>Filter</Form.Label>
