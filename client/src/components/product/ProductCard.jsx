@@ -37,10 +37,11 @@ const ProductCard = ({ prod, refetch }) => {
           cID={prod.category._id}
           refetch={refetch}
           toBuy={prod.product_toBuy}
+          price={prod.product_unit_price}
         ></AddToList>
-        <p className="total-price">
+        {/* <p className="total-price">
           Total: {(prod.product_toBuy * prod.product_unit_price).toFixed(2)}
-        </p>
+        </p> */}
       </div>
     </div>
   );

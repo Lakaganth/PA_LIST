@@ -9,7 +9,9 @@ module.exports = {
   Query: {
     getAllCategories: async () => {
       try {
-        const category = await Category.find();
+        const category = await Category.find().sort({
+          category_name: "asc"
+        });
 
         return category;
       } catch (err) {
@@ -26,7 +28,9 @@ module.exports = {
     },
     getAllShops: async () => {
       try {
-        const shop = await Shop.find();
+        const shop = await Shop.find().sort({
+          shop_name: "asc"
+        });
 
         return shop;
       } catch (err) {
@@ -45,6 +49,9 @@ module.exports = {
     },
     getAllProductsForCategory: async (root, { cID }, ctxt) => {
       const product = await Product.find({ category: cID })
+        .sort({
+          product_name: "asc"
+        })
         .populate("shop")
         .populate("category");
 
@@ -203,10 +210,17 @@ module.exports = {
     },
     updateProductToBuy: async (root, { pID, toBuy }, ctxt) => {
       const today = moment().format("YYYY MM DD");
-      const product = await Product.findByIdAndUpdate(
-        { _id: pID },
-        { $set: { product_toBuy: toBuy, product_toBuy_date: today } }
-      );
+      // const product = await Product.findByIdAndUpdate(
+      //   { _id: pID },
+      //   { $set: { product_toBuy: toBuy, product_toBuy_date: today } }
+      // );
+      const product = await Product.findById(pID);
+      product.product_toBuy = toBuy;
+      product.product_toBuy_date = today;
+      // console.log(product)
+
+      // console.log(product.product_toBuy_date);
+      await product.save();
       const list = await ToBuy.findOne({
         created_date: product.product_toBuy_date
       });
@@ -293,6 +307,8 @@ module.exports = {
           }
         );
       });
+      todayList.product = [];
+      todayList.save();
       return true;
     },
 
