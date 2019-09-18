@@ -15,7 +15,7 @@ const ProductPage = ({ match }) => {
   if (loading) return <Loader></Loader>;
 
   if (error) return `Error! ${error}`;
-  // console.log(data);
+  //console.log(data);
   return (
     <div className="product-page">
       {data.getAllProductsForCategory.map(p => (

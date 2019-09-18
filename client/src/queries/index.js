@@ -190,29 +190,39 @@ export const EDIT_PRODUCT = gql`
   mutation(
     $pID: ID!
     $product_name: String!
+    $product_size: String
+    $product_pack: Int
     $product_unit_price: Float
     $product_inventory: Int
     $product_inventory_date: Date
-    $category_name: String!
-    $primary_shop: String
-    $secondary_shop: String
   ) {
     editProduct(
       pID: $pID
       editProductInput: {
         product_name: $product_name
         product_unit_price: $product_unit_price
+        product_pack: $product_pack
+        product_size: $product_size
         product_inventory: $product_inventory
         product_inventory_date: $product_inventory_date
-        category_name: $category_name
-        primary_shop: $primary_shop
-        secondary_shop: $secondary_shop
       }
     ) {
       _id
       product_name
+      product_pack
+      product_size
+      product_category
       product_unit_price
       product_inventory
+      product_toBuy
+      product_inventory_date
+      product_toBuy_date
+      category {
+        _id
+      }
+      primary_shop {
+        _id
+      }
     }
   }
 `;
@@ -220,5 +230,11 @@ export const EDIT_PRODUCT = gql`
 export const LIST_COMPLETED = gql`
   mutation($lID: ID!) {
     listCompleted(lID: $lID)
+  }
+`;
+
+export const REMOVE_PRODUCT = gql`
+  mutation($pID: ID!, $cID: ID!) {
+    deleteProduct(pID: $pID, cID: $cID)
   }
 `;

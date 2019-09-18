@@ -3,6 +3,15 @@ const { gql } = require("apollo-server");
 module.exports = gql`
   scalar Date
 
+  input editProductInputData {
+    product_name: String!
+    product_unit_price: Float
+    product_pack: Int
+    product_size: String
+    product_inventory: Int
+    product_inventory_date: Date
+  }
+
   input newProductInputData {
     product_name: String!
     product_unit_price: Float
@@ -75,8 +84,9 @@ module.exports = gql`
     addNewProduct(newProductInput: newProductInputData!): Product!
     updateProductToBuy(pID: ID!, toBuy: Int!): Product!
     updateCompleted(pID: ID!, comp: Boolean!): Product!
-    editProduct(pID: ID!, editProductInput: newProductInputData!): Product
+    editProduct(pID: ID!, editProductInput: editProductInputData!): Product
     listCompleted(lID: ID!): Boolean!
+    deleteProduct(pID: ID!, cID: ID!): Boolean
     deleteAll: Boolean!
   }
 `;

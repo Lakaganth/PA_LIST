@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import Moment from "react-moment";
 import "./Product.scss";
 import AddToList from "./AddToList";
+import RemoveProduct from "./RemoveProduct";
+import EditComponent from "./EditComponent";
 
 const ProductCard = ({ prod, refetch }) => {
   // console.log(prod);
@@ -11,6 +13,11 @@ const ProductCard = ({ prod, refetch }) => {
   return (
     <div className="product-card">
       <div className="card-content">
+        <RemoveProduct
+          pID={prod._id}
+          refetch={refetch}
+          cID={prod.category._id}
+        ></RemoveProduct>
         <p className="prd-name">{prod.product_name}</p>
         <p className="prd-pack">
           {prod.product_pack} pack - {prod.product_size}{" "}
@@ -25,9 +32,10 @@ const ProductCard = ({ prod, refetch }) => {
             Inv: {prod.product_inventory} on{" "}
             <Moment format="MMM DD">{prod.product_inventory_date}</Moment>{" "}
           </p>
-          <Link to={`/category/product/edit/${prod._id}/${prod.category._id}`}>
+          {/* <Link to={`/category/product/edit/${prod._id}/${prod.category._id}`}>
             Edit
-          </Link>
+          </Link> */}
+          <EditComponent prod={prod} refetch={refetch}></EditComponent>
         </div>
       </div>
       <div className="prd-list-section">

@@ -15,7 +15,7 @@ import "react-datepicker/dist/react-datepicker-cssmodules.css";
 import { GET_PRODUCT } from "./../../queries/index";
 import Loader from "../utils/Loader";
 
-const EditProductForm = ({ match }) => {
+const EditProductForm = ({ match, history }) => {
   const pID = match.params.pID;
 
   const getProduct = useQuery(GET_PRODUCT, {
@@ -154,6 +154,7 @@ const EditProductForm = ({ match }) => {
     //   primary_shop: "",
     //   secondary_shop: ""
     // });
+    history.push("/category");
   };
   if (load) return <Loader></Loader>;
 

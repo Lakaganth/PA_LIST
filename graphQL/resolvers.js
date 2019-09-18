@@ -164,6 +164,7 @@ module.exports = {
         primary_shop,
         secondary_shop
       } = newProductInput;
+      console.log(category_name);
       try {
         const newProduct = new Product({
           product_name,
@@ -264,10 +265,7 @@ module.exports = {
         product_size,
         product_unit_price,
         product_inventory,
-        product_inventory_date,
-        category_name,
-        primary_shop,
-        secondary_shop
+        product_inventory_date
       } = editProductInput;
 
       try {
@@ -280,10 +278,7 @@ module.exports = {
               product_size,
               product_unit_price,
               product_inventory,
-              product_inventory_date,
-              category_name,
-              primary_shop,
-              secondary_shop
+              product_inventory_date
             }
           }
         );
@@ -311,7 +306,35 @@ module.exports = {
       todayList.save();
       return true;
     },
+    deleteProduct: async (root, { pID, cID }, ctxt) => {
+      try {
+        const product = await Product.findById(pID);
+        const category = await Category.findById(cID);
+        category.product = category.product.filter(p => p.toString() !== pID);
+        category.save();
 
+        const pShop = product.primary_shop;
+
+        const shop = await Shop.findById(pShop);
+
+        shop.product = shop.product.filter(p => p.toString() !== pID);
+        shop.save();
+
+        if (product.secondary_shop) {
+          const sec_shop = product.secondary_shop;
+          console.log(sec_shop);
+          const secshop = await Shop.findById(sec_shop);
+          secshop.product = secshop.product.filter(p => p.toString() !== pID);
+          secshop.save();
+        }
+
+        await Product.findByIdAndRemove(pID);
+
+        return true;
+      } catch (err) {
+        throw new Error("Error, Product Delete failed", err);
+      }
+    },
     deleteAll: async () => {
       await Category.deleteMany();
       await Shop.deleteMany();
