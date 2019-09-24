@@ -13,10 +13,10 @@ const CategoryPage = () => {
   if (error) return <div>Error : {error}</div>;
 
   return (
-    <div className="category-page">
+    <div className="category-page ">
       {data.getAllCategories.map(c => {
         return (
-          <div key={c._id} className="category-card">
+          <div key={c._id} className="category-card ">
             <Link to={`/category/product/${c._id}`}>{c.category_name}</Link>
           </div>
         );

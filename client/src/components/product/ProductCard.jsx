@@ -7,17 +7,20 @@ import AddToList from "./AddToList";
 import RemoveProduct from "./RemoveProduct";
 import EditComponent from "./EditComponent";
 
-const ProductCard = ({ prod, refetch }) => {
-  // console.log(prod);
+const ProductCard = ({ prod, refetch, edit }) => {
+  console.log(edit);
 
   return (
     <div className="product-card">
       <div className="card-content">
-        <RemoveProduct
-          pID={prod._id}
-          refetch={refetch}
-          cID={prod.category._id}
-        ></RemoveProduct>
+        {edit ? (
+          <RemoveProduct
+            pID={prod._id}
+            refetch={refetch}
+            cID={prod.category._id}
+          ></RemoveProduct>
+        ) : null}
+
         <p className="prd-name">{prod.product_name}</p>
         <p className="prd-pack">
           {prod.product_pack} pack - {prod.product_size}{" "}
@@ -35,7 +38,9 @@ const ProductCard = ({ prod, refetch }) => {
           {/* <Link to={`/category/product/edit/${prod._id}/${prod.category._id}`}>
             Edit
           </Link> */}
-          <EditComponent prod={prod} refetch={refetch}></EditComponent>
+          {edit ? (
+            <EditComponent prod={prod} refetch={refetch}></EditComponent>
+          ) : null}
         </div>
       </div>
       <div className="prd-list-section">

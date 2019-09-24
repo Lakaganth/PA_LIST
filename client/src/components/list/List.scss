@@ -1,12 +1,21 @@
+.list-page {
+  background: #40407a;
+  padding: 10px 15px;
+  height: 200vh;
+  color: #ffffff;
+}
+
 .list-card {
   // border: 1px solid rgb(35, 240, 178);
-  background: #d7e5ff;
+  background: #ffffff;
   border-radius: 20px;
   margin: 10px 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0;
+  color: #1b1b41;
+  
 }
 
 .prd-pack,
@@ -27,5 +36,9 @@
 .span-price {
   font-weight: 900;
   text-decoration: underline;
-  color: #3a02bd;
+  color: #d1ff04;
+}
+
+.comp-but {
+  margin: 1rem 25% 0;
 }

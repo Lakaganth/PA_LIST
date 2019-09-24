@@ -12,6 +12,7 @@ import ProductPage from "./components/product/ProductPage";
 import ListPage from "./components/list/ListPage";
 import LandingPage from "./pages/landingPage/LandingPage";
 import EditProductForm from "./components/product/EditProductForm";
+import ProdPage from "./components/product/ProdPage";
 
 const App = () => {
   return (
@@ -19,7 +20,7 @@ const App = () => {
       <Router>
         <SideNavbarPA></SideNavbarPA>
         <Switch>
-          <div className="container">
+          <div>
             <Route path="/" exact component={LandingPage}></Route>
             <Route path="/add-Category" component={AddCategoryForm}></Route>
             <Route path="/add-shop" component={AddShopFrom}></Route>
@@ -29,7 +30,7 @@ const App = () => {
             <Route
               path="/Category/product/:cID"
               exact
-              component={ProductPage}
+              component={ProdPage}
             ></Route>
             <Route
               path="/Category/product/edit/:pID/:cID"

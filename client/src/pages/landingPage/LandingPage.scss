@@ -3,7 +3,8 @@
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  // background: rgb(12, 105, 69);
+  background: #443744;
+  padding: 0 20px;
 
   a {
     color: #fff;
@@ -14,19 +15,22 @@
 
 .create-list,
 .today-list {
-  width: 100%;
+  width: 80%;
   height: 20vh;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 2em;
   border-radius: 20px;
+  -webkit-box-shadow: 4px 11px 12px -8px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 4px 11px 12px -8px rgba(0, 0, 0, 0.75);
+  box-shadow: 4px 11px 12px -8px rgba(0, 0, 0, 0.75);
 }
 
 .create-list {
-  background: rgb(36, 129, 236);
+  background: #8c8cc7;
 }
 .today-list {
   margin: -20vh 0 0 0;
-  background: rgb(148, 39, 81);
+  background: #ae68a7;
 }

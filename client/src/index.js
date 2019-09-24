@@ -11,7 +11,7 @@ import { ApolloProvider } from "react-apollo";
 
 const client = new ApolloClient({
   uri: "https://pastoreslist.herokuapp.com/graphql",
-  // uri: "http://localhost:5000/graphql",
+  //uri: "http://localhost:5000/graphql",
   cache: new InMemoryCache()
 });
 

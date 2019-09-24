@@ -58,8 +58,9 @@ const ListPage = props => {
     completeList({ variables: { lID: data.getTodayList._id } });
     props.history.push("/");
   };
+  console.log(data);
   return (
-    <div>
+    <div className="list-page">
       <h4>
         Hello Raj, Today is{" "}
         <Moment format="MMM DD">{data.getTodayList.created_date}</Moment>{" "}
@@ -97,7 +98,7 @@ const ListPage = props => {
       {/* {data.getTodayList.product.map(p => (
         <ListCard key={p._id} pList={p} catFilter={catFilter}></ListCard>
       ))} */}
-      <Button waves="light" onClick={handleListSubmit}>
+      <Button waves="light" onClick={handleListSubmit} className="comp-but">
         Completed
         <Icon right>send</Icon>
       </Button>
