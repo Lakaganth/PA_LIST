@@ -19,13 +19,24 @@ const ListPage = props => {
   const getTodayList = useQuery(GET_TODAY_LIST);
   const { data, loading, error, refetch, networkStatus } = getTodayList;
 
+  const getCategory = useQuery(GET_ALL_CATEGORIES);
+  const [completeList] = useMutation(LIST_COMPLETED);
+
   React.useEffect(() => {
     refetch();
     //eslint-diable-next-line
   }, []);
 
-  const getCategory = useQuery(GET_ALL_CATEGORIES);
-  const [completeList] = useMutation(LIST_COMPLETED);
+  if (!data) {
+    console.log("Hello");
+    return (
+      <div className="list-page">
+        <h4>Hello Raj, </h4>
+        <p>You have not created list for the day</p>
+      </div>
+    );
+  }
+
   const getAllCategories = () => {
     const { data, loading, error } = getCategory;
     if (loading) return "Loading...";
@@ -58,7 +69,7 @@ const ListPage = props => {
     completeList({ variables: { lID: data.getTodayList._id } });
     props.history.push("/");
   };
-  console.log(data);
+
   return (
     <div className="list-page">
       <h4>
@@ -95,9 +106,7 @@ const ListPage = props => {
         : data.getTodayList.product.map(p => (
             <ListCard key={p._id} pList={p} catFilter={catFilter}></ListCard>
           ))}
-      {/* {data.getTodayList.product.map(p => (
-        <ListCard key={p._id} pList={p} catFilter={catFilter}></ListCard>
-      ))} */}
+
       <Button waves="light" onClick={handleListSubmit} className="comp-but">
         Completed
         <Icon right>send</Icon>

@@ -42,41 +42,43 @@ const AddShopFrom = () => {
   };
 
   return (
-    <Form
-      className="mt-3"
-      onSubmit={e => {
-        handleSubmit(e);
-      }}
-    >
-      <Form.Group controlId="shop_name">
-        <Form.Label>Shop Name</Form.Label>
-        <Form.Control
-          type="text"
-          name="shop_name"
-          value={shop_name}
-          onChange={handleChange}
-          required
-        />
-      </Form.Group>
-      <Form.Group controlId="shop_location">
-        <Form.Label>Shop Location</Form.Label>
-        <Form.Control
-          type="text"
-          name="shop_location"
-          value={shop_location}
-          onChange={handleChange}
-          required
-        />
-      </Form.Group>
-      <Button
-        variant="primary"
-        className="mx-7"
-        type="submit"
-        disabled={loading}
+    <div className="container">
+      <Form
+        className="mt-3"
+        onSubmit={e => {
+          handleSubmit(e);
+        }}
       >
-        Submit
-      </Button>
-    </Form>
+        <Form.Group controlId="shop_name">
+          <Form.Label>Shop Name</Form.Label>
+          <Form.Control
+            type="text"
+            name="shop_name"
+            value={shop_name}
+            onChange={handleChange}
+            required
+          />
+        </Form.Group>
+        <Form.Group controlId="shop_location">
+          <Form.Label>Shop Location</Form.Label>
+          <Form.Control
+            type="text"
+            name="shop_location"
+            value={shop_location}
+            onChange={handleChange}
+            required
+          />
+        </Form.Group>
+        <Button
+          variant="primary"
+          className="mx-7"
+          type="submit"
+          disabled={loading}
+        >
+          Submit
+        </Button>
+      </Form>
+    </div>
   );
 };
 

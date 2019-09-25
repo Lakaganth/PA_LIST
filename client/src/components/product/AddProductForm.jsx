@@ -101,168 +101,170 @@ const AddProductForm = props => {
     // props.history.push("/");
   };
   return (
-    <Form
-      className="mt-3"
-      onSubmit={e => {
-        handleSubmit(e);
-      }}
-    >
-      <Form.Group controlId="product_name">
-        <Form.Label>Product Name</Form.Label>
-        <Form.Control
-          type="text"
-          name="product_name"
-          value={product_name}
-          onChange={handleChange}
-          required
-        />
-      </Form.Group>
-      <Form.Group controlId="product_pack">
-        <Form.Label>Product Pack</Form.Label>
-        <Form.Control
-          type="number"
-          name="product_unit_price"
-          value={product_pack}
-          onChange={e => {
-            setNewProduct({
-              ...newProduct,
-              product_pack: parseInt(e.target.value)
-            });
-          }}
-        />
-      </Form.Group>
-
-      <Form.Group controlId="product_size">
-        <Form.Label>Product Size</Form.Label>
-        <Form.Control
-          type="text"
-          name="product_size"
-          value={product_size}
-          onChange={handleChange}
-        />
-      </Form.Group>
-
-      <Form.Group controlId="product_unit_price">
-        <Form.Label>Product Unit Price</Form.Label>
-        <Form.Control
-          type="number"
-          name="product_unit_price"
-          step="0.01"
-          value={product_unit_price}
-          onChange={e => {
-            setNewProduct({
-              ...newProduct,
-              product_unit_price: parseFloat(e.target.value)
-            });
-          }}
-        />
-      </Form.Group>
-      <Form.Group controlId="product_inventory">
-        <Form.Label>Product Available Inventory</Form.Label>
-        <Form.Control
-          type="number"
-          name="product_inventory"
-          value={product_inventory}
-          onChange={e => {
-            setNewProduct({
-              ...newProduct,
-              product_inventory: parseInt(e.target.value)
-            });
-          }}
-        />
-      </Form.Group>
-      <Form.Group controlId="product_inventory_date">
-        <Form.Label>Product Inventory Date</Form.Label>
-        <DatePicker
-          selected={product_inventory_date}
-          placeholderText="Click to select a date "
-          value={product_inventory_date}
-          onChange={e => {
-            setNewProduct({
-              ...newProduct,
-              product_inventory_date: e
-            });
-          }}
-          dateFormat="MMMM d, yyyy "
-        />
-      </Form.Group>
-      {category_name === null ? (
-        <Form.Group controlId="category_name">
-          <Form.Label>Category</Form.Label>
-          <Form.Control
-            as="select"
-            name="category_name"
-            onChange={e => {
-              setNewProduct({
-                ...newProduct,
-                category_name: e.target.value
-              });
-            }}
-          >
-            <option>Choose...</option>
-            {getAllCategories()}
-          </Form.Control>
-        </Form.Group>
-      ) : (
-        <Form.Group controlId="category_name">
-          <Form.Label>Category</Form.Label>
-          <Form.Control
-            as="select"
-            name="category_name"
-            onChange={e => {
-              setNewProduct({
-                ...newProduct,
-                category_name: e.target.value
-              });
-            }}
-          >
-            <option>Choose...</option>
-            {getAllCategories()}
-          </Form.Control>
-        </Form.Group>
-      )}
-
-      <Form.Group controlId="primary_shop">
-        <Form.Label>Primary Shop</Form.Label>
-        <Form.Control
-          as="select"
-          name="primary_shop"
-          onChange={e => {
-            setNewProduct({
-              ...newProduct,
-              primary_shop: e.target.value
-            });
-          }}
-        >
-          <option>Choose...</option>
-          {getAllShops()}
-        </Form.Control>
-      </Form.Group>
-      <Form.Group controlId="secondary_shop">
-        <Form.Label>Secondary Shop</Form.Label>
-        <Form.Control
-          as="select"
-          name="secondary_shop"
-          onChange={e => {
-            setNewProduct({
-              ...newProduct,
-              secondary_shop: e.target.value
-            });
-          }}
-        >
-          <option>Choose...</option>
-          {getAllShops()}
-        </Form.Control>
-      </Form.Group>
-      <Button
-        variant="primary"
-        className="mx-7"
-        type="submit"
-        disabled={loading}
+    <div className="container">
+      <Form
+        className="mt-3"
+        onSubmit={e => {
+          handleSubmit(e);
+        }}
       >
-        Submit
-      </Button>
-    </Form>
+        <Form.Group controlId="product_name">
+          <Form.Label>Product Name</Form.Label>
+          <Form.Control
+            type="text"
+            name="product_name"
+            value={product_name}
+            onChange={handleChange}
+            required
+          />
+        </Form.Group>
+        <Form.Group controlId="product_pack">
+          <Form.Label>Product Pack</Form.Label>
+          <Form.Control
+            type="number"
+            name="product_unit_price"
+            value={product_pack}
+            onChange={e => {
+              setNewProduct({
+                ...newProduct,
+                product_pack: parseInt(e.target.value)
+              });
+            }}
+          />
+        </Form.Group>
+
+        <Form.Group controlId="product_size">
+          <Form.Label>Product Size</Form.Label>
+          <Form.Control
+            type="text"
+            name="product_size"
+            value={product_size}
+            onChange={handleChange}
+          />
+        </Form.Group>
+
+        <Form.Group controlId="product_unit_price">
+          <Form.Label>Product Unit Price</Form.Label>
+          <Form.Control
+            type="number"
+            name="product_unit_price"
+            step="0.01"
+            value={product_unit_price}
+            onChange={e => {
+              setNewProduct({
+                ...newProduct,
+                product_unit_price: parseFloat(e.target.value)
+              });
+            }}
+          />
+        </Form.Group>
+        <Form.Group controlId="product_inventory">
+          <Form.Label>Product Available Inventory</Form.Label>
+          <Form.Control
+            type="number"
+            name="product_inventory"
+            value={product_inventory}
+            onChange={e => {
+              setNewProduct({
+                ...newProduct,
+                product_inventory: parseInt(e.target.value)
+              });
+            }}
+          />
+        </Form.Group>
+        <Form.Group controlId="product_inventory_date">
+          <Form.Label>Product Inventory Date</Form.Label>
+          <DatePicker
+            selected={product_inventory_date}
+            placeholderText="Click to select a date "
+            value={product_inventory_date}
+            onChange={e => {
+              setNewProduct({
+                ...newProduct,
+                product_inventory_date: e
+              });
+            }}
+            dateFormat="MMMM d, yyyy "
+          />
+        </Form.Group>
+        {category_name === null ? (
+          <Form.Group controlId="category_name">
+            <Form.Label>Category</Form.Label>
+            <Form.Control
+              as="select"
+              name="category_name"
+              onChange={e => {
+                setNewProduct({
+                  ...newProduct,
+                  category_name: e.target.value
+                });
+              }}
+            >
+              <option>Choose...</option>
+              {getAllCategories()}
+            </Form.Control>
+          </Form.Group>
+        ) : (
+          <Form.Group controlId="category_name">
+            <Form.Label>Category</Form.Label>
+            <Form.Control
+              as="select"
+              name="category_name"
+              onChange={e => {
+                setNewProduct({
+                  ...newProduct,
+                  category_name: e.target.value
+                });
+              }}
+            >
+              <option>Choose...</option>
+              {getAllCategories()}
+            </Form.Control>
+          </Form.Group>
+        )}
+
+        <Form.Group controlId="primary_shop">
+          <Form.Label>Primary Shop</Form.Label>
+          <Form.Control
+            as="select"
+            name="primary_shop"
+            onChange={e => {
+              setNewProduct({
+                ...newProduct,
+                primary_shop: e.target.value
+              });
+            }}
+          >
+            <option>Choose...</option>
+            {getAllShops()}
+          </Form.Control>
+        </Form.Group>
+        <Form.Group controlId="secondary_shop">
+          <Form.Label>Secondary Shop</Form.Label>
+          <Form.Control
+            as="select"
+            name="secondary_shop"
+            onChange={e => {
+              setNewProduct({
+                ...newProduct,
+                secondary_shop: e.target.value
+              });
+            }}
+          >
+            <option>Choose...</option>
+            {getAllShops()}
+          </Form.Control>
+        </Form.Group>
+        <Button
+          variant="primary"
+          className="mx-7"
+          type="submit"
+          disabled={loading}
+        >
+          Submit
+        </Button>
+      </Form>
+    </div>
   );
 };
 

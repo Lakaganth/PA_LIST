@@ -44,31 +44,33 @@ const AddCategoryForm = () => {
   };
 
   return (
-    <Form
-      className="mt-3"
-      onSubmit={e => {
-        handleSubmit(e);
-      }}
-    >
-      <Form.Group controlId="category_name">
-        <Form.Label>Category Name</Form.Label>
-        <Form.Control
-          type="text"
-          name="category_name"
-          value={category_name}
-          onChange={handleChange}
-          required
-        />
-      </Form.Group>
-      <Button
-        variant="primary"
-        className="mx-7"
-        type="submit"
-        disabled={loading}
+    <div className="container">
+      <Form
+        className="mt-3"
+        onSubmit={e => {
+          handleSubmit(e);
+        }}
       >
-        Submit
-      </Button>
-    </Form>
+        <Form.Group controlId="category_name">
+          <Form.Label>Category Name</Form.Label>
+          <Form.Control
+            type="text"
+            name="category_name"
+            value={category_name}
+            onChange={handleChange}
+            required
+          />
+        </Form.Group>
+        <Button
+          variant="primary"
+          className="mx-7"
+          type="submit"
+          disabled={loading}
+        >
+          Submit
+        </Button>
+      </Form>
+    </div>
   );
 };
 
