@@ -37,7 +37,7 @@ const ProdPage = ({ match }) => {
           </div>
 
           <div className="edit-switch">
-            <Switch offLabel="Off" onLabel="Edit" onChange={handleEdit} />
+            <Switch offLabel="" onLabel="Edit" onChange={handleEdit} />
           </div>
         </div>
 

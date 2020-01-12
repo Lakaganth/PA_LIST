@@ -1,8 +1,8 @@
 import React from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import { useMutation, useQuery } from "@apollo/react-hooks";
-import { GET_ALL_CATEGORIES, GET_ALL_SHOPS, EDIT_PRODUCT } from "../../queries";
+import { useMutation } from "@apollo/react-hooks";
+import { EDIT_PRODUCT } from "../../queries";
 
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -11,8 +11,8 @@ import Loader from "../utils/Loader";
 
 const EditComponent = ({ prod, refetch }) => {
   const [edit, setEdit] = React.useState(false);
-  const getCategories = useQuery(GET_ALL_CATEGORIES);
-  const getshops = useQuery(GET_ALL_SHOPS);
+  // const getCategories = useQuery(GET_ALL_CATEGORIES);
+  // const getshops = useQuery(GET_ALL_SHOPS);
   const [editExistingProduct, { loading }] = useMutation(EDIT_PRODUCT);
 
   const [editProduct, setEditProduct] = React.useState({
@@ -39,10 +39,16 @@ const EditComponent = ({ prod, refetch }) => {
       primary_shop: "",
       secondary_shop: ""
     });
-  }, []);
+  }, [
+    prod.product_name,
+    prod.product_pack,
+    prod.product_size,
+    prod.product_unit_price,
+    prod.product_inventory,
+    prod.product_inventory_date
+  ]);
 
   const pID = prod._id;
-  //   console.log(prod);
 
   const {
     product_name,
@@ -176,55 +182,6 @@ const EditComponent = ({ prod, refetch }) => {
               dateFormat="MMMM d, yyyy "
             />
           </Form.Group>
-          {/* <Form.Group controlId="category_name">
-            <Form.Label>Category</Form.Label>
-            <Form.Control
-              as="select"
-              name="category_name"
-              onChange={e => {
-                setEditProduct({
-                  ...editProduct,
-                  category_name: e.target.value
-                });
-              }}
-              required
-            >
-              <option>{category_name}</option>
-              {getAllCategories()}
-            </Form.Control>
-          </Form.Group>
-          <Form.Group controlId="primary_shop">
-            <Form.Label>Primary Shop</Form.Label>
-            <Form.Control
-              as="select"
-              name="primary_shop"
-              onChange={e => {
-                setEditProduct({
-                  ...editProduct,
-                  primary_shop: e.target.value
-                });
-              }}
-            >
-              <option>Choose...</option>
-              {getAllShops()}
-            </Form.Control>
-          </Form.Group>
-          <Form.Group controlId="secondary_shop">
-            <Form.Label>Secondary Shop</Form.Label>
-            <Form.Control
-              as="select"
-              name="secondary_shop"
-              onChange={e => {
-                setEditProduct({
-                  ...editProduct,
-                  secondary_shop: e.target.value
-                });
-              }}
-            >
-              <option>Choose...</option>
-              {getAllShops()}
-            </Form.Control>
-          </Form.Group> */}
           <Button
             variant="primary"
             className="mx-7"

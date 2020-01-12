@@ -3,14 +3,14 @@
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  background: #2b2049;
+  background: #242363;
   padding: 0 20px;
 
   a {
     color: #fff;
   }
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .create-list,
@@ -28,9 +28,9 @@
 }
 
 .create-list {
-  background: #8c8cc7;
+  background: #a31f77;
 }
 .today-list {
   margin: -20vh 0 0 0;
-  background: #ae68a7;
+  background: #1f9aa3;
 }

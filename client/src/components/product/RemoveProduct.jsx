@@ -1,10 +1,10 @@
 import React from "react";
 import { useMutation } from "@apollo/react-hooks";
-import { REMOVE_PRODUCT, GET_PRODUCTS_FROM_CATEGORIES } from "../../queries";
+import { REMOVE_PRODUCT } from "../../queries";
 import { Button } from "react-materialize";
 import "./Product.scss";
 const RemoveProduct = ({ pID, cID, refetch }) => {
-  const [removeProduct, { loading }] = useMutation(REMOVE_PRODUCT);
+  const [removeProduct] = useMutation(REMOVE_PRODUCT);
 
   const handleRemove = () => {
     console.log("yes");

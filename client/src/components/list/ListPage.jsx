@@ -14,7 +14,7 @@ import Form from "react-bootstrap/Form";
 
 const ListPage = props => {
   const [catFilter, setCatFilter] = React.useState({ catFilter: "All" });
-  const [listData, setListData] = React.useState(null);
+  // const [listData, setListData] = React.useState(null);
 
   const getTodayList = useQuery(GET_TODAY_LIST);
   const { data, loading, error, refetch, networkStatus } = getTodayList;
@@ -24,11 +24,9 @@ const ListPage = props => {
 
   React.useEffect(() => {
     refetch();
-    //eslint-diable-next-line
-  }, []);
+  }, [refetch]);
 
   if (!data) {
-    console.log("Hello");
     return (
       <div className="list-page">
         <h4>Hello Raj, </h4>

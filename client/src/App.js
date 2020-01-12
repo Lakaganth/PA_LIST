@@ -8,7 +8,7 @@ import AddShopFrom from "./components/shop/AddShopFrom";
 import AddProductForm from "./components/product/AddProductForm";
 import SideNavbarPA from "./components/navbar/SideNavbarPA";
 import CategoryPage from "./components/category/CategoryPage";
-import ProductPage from "./components/product/ProductPage";
+// import ProductPage from "./components/product/ProductPage";
 import ListPage from "./components/list/ListPage";
 import LandingPage from "./pages/landingPage/LandingPage";
 import EditProductForm from "./components/product/EditProductForm";
@@ -20,7 +20,7 @@ const App = () => {
       <Router>
         <SideNavbarPA></SideNavbarPA>
         <Switch>
-          <div>
+          <Fragment>
             <Route path="/" exact component={LandingPage}></Route>
             <Route path="/add-Category" component={AddCategoryForm}></Route>
             <Route path="/add-shop" component={AddShopFrom}></Route>
@@ -37,7 +37,7 @@ const App = () => {
               exact
               component={EditProductForm}
             ></Route>
-          </div>
+          </Fragment>
         </Switch>
       </Router>
     </Fragment>

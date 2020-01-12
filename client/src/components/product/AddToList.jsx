@@ -1,6 +1,6 @@
 import React from "react";
 import { useMutation } from "@apollo/react-hooks";
-import { Button, TextInput, Icon } from "react-materialize";
+import { TextInput, Icon } from "react-materialize";
 import { UPDATE_TOBUY_LIST, GET_PRODUCTS_FROM_CATEGORIES } from "../../queries";
 import Loader from "./../utils/Loader";
 

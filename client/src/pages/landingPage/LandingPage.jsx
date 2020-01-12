@@ -6,10 +6,10 @@ const LandingPage = () => {
   return (
     <div className="landing-page">
       <div className="create-list">
-        <Link to="/category">Create List</Link>
+        <Link to="/category">Inventory</Link>
       </div>
       <div className="today-list">
-        <Link to="/list">Today's List</Link>
+        <Link to="/list">Procurement List</Link>
       </div>
     </div>
   );
